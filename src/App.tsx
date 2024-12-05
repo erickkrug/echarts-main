@@ -1,15 +1,17 @@
 import './App.css'
 import { Overview } from './components/sections/overview'
+import  RelatorioMensal  from './components/sections/relatorio-mensal'
 
 function App() {
 
   return (
     <>
-    <div className='bg-slate-600'>
-      <h1>hello world</h1>
+    <div className='border-solid border-8'>
+      <RelatorioMensal/>
     </div>
-
+    <div className='border-solid border-8'>
       <Overview/>
+    </div>
     </>
   )
 }

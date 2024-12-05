@@ -4,7 +4,7 @@ import { useApi } from "../useApi"
 export async function usePerMonth(params = {}) {
     const { api } = useApi();
 
-    // const request = await api.post("AtendimentoPorServico/BuscaMensal", params);
+    const request = await api.post("AtendimentoPorServico/BuscaMensal", params);
     const response = [
         {
             "servico": "Orientações sobre o programa",
