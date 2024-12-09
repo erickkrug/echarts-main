@@ -12,6 +12,7 @@
   "dependencies": {
     "axios": "^1.7.8",
     "echarts": "^5.5.1",
+    "gridjs": "^6.2.0",
     "react": "^0.0.0-experimental-1b1283ad-20241203",
     "react-dom": "^0.0.0-experimental-1b1283ad-20241203",
     "react-router-dom": "^7.0.2"
