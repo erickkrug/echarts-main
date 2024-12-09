@@ -38,7 +38,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const login = async (email: string, password: string) => {
     try {
-      await api.post('login', { email, password }, { withCredentials: true });
+      await api.post('login', { email, password });
 
       setIsAuthenticated(true);
       navigate('/login/authentication');

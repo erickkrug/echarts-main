@@ -5,7 +5,8 @@ export function useApi() {
         baseURL: "https://localhost:44327/api/",
         headers: {
             "Content-Type": "application/json",
-        }
+        },
+        withCredentials: true, // Configurações aplicadas globalmente
     });
 
     return { api }
