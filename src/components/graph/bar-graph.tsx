@@ -56,7 +56,7 @@ export function BarGraph({ config, data }: GraphsConfig) {
         trigger: 'item',
         formatter: (params: any) => `${params.seriesName}: ${params.value}`
       },
-      grid: { containLabel: true, top: '10%', bottom: '10%' },
+      grid: { containLabel: true, top: '10%', bottom: '20%' },
       yAxis: yAxis,
       xAxis: xAxis,
       series: [
@@ -64,6 +64,9 @@ export function BarGraph({ config, data }: GraphsConfig) {
           type: 'bar',
           data: data.map((item) => ({
             value: item.value,
+            itemStyle: {
+              color: item.itemStyle
+            }
 
           })),
           label: {

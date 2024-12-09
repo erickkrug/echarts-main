@@ -1,10 +1,10 @@
-import { transformAtendimento } from "../../models/transforms/atendimento";
+import { transformAtendimento } from "../../models/transforms/transformAtendimento";
 import { useApi } from "../useApi"
 
 export async function usePerMonth(params = {}) {
     const { api } = useApi();
 
-    const request = await api.post("AtendimentoPorServico/BuscaMensal", params);
+    await api.post("AtendimentoPorServico/BuscaMensal", params);
     const response = [
         {
             "servico": "Orientações sobre o programa",
