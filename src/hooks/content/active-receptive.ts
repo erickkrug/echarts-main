@@ -4,7 +4,7 @@ import { useApi } from "../useApi"
 export async function activeReceptive(params = {}) {
     const { api } = useApi();
 
-    const request = await api.post("AtendimentoPorServico/BuscaAtivoReceptivo", params);
+    await api.post("AtendimentoPorServico/BuscaAtivoReceptivo", params);
     const response = [
         {
             "servico": "Orientações sobre o programa",

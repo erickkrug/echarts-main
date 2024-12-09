@@ -6,6 +6,7 @@ import Login from './pages/login/login';
 import Authentication from './pages/login/authentication';
 import DynamicRoutes from './DynamicRoutes';
 import Home from './pages/home/App';
+import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>

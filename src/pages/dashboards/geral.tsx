@@ -2,7 +2,7 @@ import './geral.css'
 import { Overview } from '../../components/sections/overview'
 import  RelatorioMensal  from '../../components/sections/relatorio-mensal'
 
-function Geral() {
+function App() {
 
   return (
     <>
@@ -16,4 +16,4 @@ function Geral() {
   )
 }
 
-export default Geral
+export default App
