@@ -13,7 +13,8 @@
     "axios": "^1.7.8",
     "echarts": "^5.5.1",
     "react": "^0.0.0-experimental-1b1283ad-20241203",
-    "react-dom": "^0.0.0-experimental-1b1283ad-20241203"
+    "react-dom": "^0.0.0-experimental-1b1283ad-20241203",
+    "react-router-dom": "^7.0.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.15.0",
