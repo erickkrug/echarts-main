@@ -29,12 +29,15 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
   const saveRoutes = (newRoutes: string[]) => {
     setRoutes((prevRoutes) => {
-      const updatedRoutes = [...prevRoutes, ...newRoutes];
+      // Combina as rotas existentes com as novas sem duplicar
+      const updatedRoutes = Array.from(new Set([...prevRoutes, ...newRoutes]));
+  
       // Salva as rotas no localStorage
       localStorage.setItem('routes', JSON.stringify(updatedRoutes));
       return updatedRoutes;
     });
   };
+  
 
   const login = async (email: string, password: string) => {
     try {
@@ -43,6 +46,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
       navigate('/login/authentication');
     } catch (error) {
+
       console.error('Erro ao fazer login:', error);
       throw error;
     }
@@ -59,7 +63,8 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
 
       setIs2FAValidated(true);
       navigate('/dashboards/geral');
-    } catch (error) {
+    } catch (error: any) {
+      alert(error.response.data)
       console.error('Erro na validação do 2FA:', error);
     }
   };
