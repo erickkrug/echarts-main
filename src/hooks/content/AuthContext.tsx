@@ -5,13 +5,14 @@ import { useApi } from '../useApi';
 interface AuthContextType {
   isAuthenticated: boolean;
   is2FAValidated: boolean;
-  routes: string[];
+  routes: Dashboard[];
   login: (email: string, password: string) => Promise<void>;
   validate2FA: (code: string) => Promise<void>;
 }
 
 interface Dashboard {
-  caminho: string;
+  path: string;
+  name: string;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -19,22 +20,25 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [is2FAValidated, setIs2FAValidated] = useState(false);
-  const [routes, setRoutes] = useState<string[]>(() => {
-    // Carrega as rotas salvas do localStorage
+
+  const [routes, setRoutes] = useState<Dashboard[]>(() => {
     const savedRoutes = localStorage.getItem('routes');
     return savedRoutes ? JSON.parse(savedRoutes) : [];
   });
+
   const navigate = useNavigate();
   const { api } = useApi();
 
-  const saveRoutes = (newRoutes: string[]) => {
+  const saveRoutes = (newRoutes: Dashboard[]) => {
     setRoutes((prevRoutes) => {
-      const updatedRoutes = [...prevRoutes, ...newRoutes];
-      // Salva as rotas no localStorage
-      localStorage.setItem('routes', JSON.stringify(updatedRoutes));
+      // Combina as rotas existentes com as novas sem duplicar
+      const updatedRoutes = Array.from(new Set([...prevRoutes, ...newRoutes]));
+      const serializableRoutes = updatedRoutes.map(({ path, name }) => ({ path, name }));
+      localStorage.setItem('routes', JSON.stringify(serializableRoutes)); // Salva apenas dados serializáveis
       return updatedRoutes;
     });
   };
+
 
   const login = async (email: string, password: string) => {
     try {
@@ -43,6 +47,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       setIsAuthenticated(true);
       navigate('/login/authentication');
     } catch (error) {
+
       console.error('Erro ao fazer login:', error);
       throw error;
     }
@@ -54,12 +59,16 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       const { dashboards } = response.data;
 
       // Atualiza as rotas e persiste no localStorage
-      const newRoutes = dashboards.map((item: Dashboard) => item.caminho);
+      const newRoutes = dashboards.map((item: { caminho: string; nome: string }) => ({
+        path: item.caminho,
+        name: item.nome,
+      }));
       saveRoutes(newRoutes);
 
       setIs2FAValidated(true);
       navigate('/dashboards/geral');
-    } catch (error) {
+    } catch (error: any) {
+      alert(error.response.data)
       console.error('Erro na validação do 2FA:', error);
     }
   };
