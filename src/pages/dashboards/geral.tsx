@@ -3,7 +3,7 @@ import { Overview } from '../../components/sections/overview'
 import  RelatorioMensal  from '../../components/sections/relatorio-mensal'
 import PessoasAtendidas from '../../components/sections/pessoas-atendidas'
 
-function Geral() {
+function App() {
 
   return (
     <>
@@ -25,4 +25,4 @@ function Geral() {
   )
 }
 
-export default Geral
+export default App

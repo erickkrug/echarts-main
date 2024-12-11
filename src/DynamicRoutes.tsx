@@ -3,35 +3,28 @@ import { useAuth } from './hooks/content/AuthContext';
 import { useEffect } from 'react';
 import Geral from './pages/dashboards/geral';
 
-// Mapeia os nomes para os componentes correspondentes
-const ComponentMap: Record<string, React.FC> = {
-  Geral, // Exemplo: "Geral" mapeia para o componente Geral
-};
-
+// Componente que carrega as rotas dinamicamente
 const DynamicRoutes = () => {
   const { routes } = useAuth();
 
   useEffect(() => {
-    console.log(routes); // Verifique se as rotas estão sendo atualizadas corretamente
+    console.log(routes); // Verifique se as rotas estão sendo atualizadas
   }, [routes]);
 
+  // Verifica se routes não está vazio antes de tentar mapear
   if (routes.length === 0) {
-    return <div>Carregando...</div>;
+    return <div>Carregando...</div>; // Exibe uma mensagem enquanto as rotas são carregadas
   }
 
+  // Mapeia as rotas dinâmicas
   return (
     <Routes>
-      {routes.map((route, index) => {
-        const Component = ComponentMap[route.name]; // Busca o componente correspondente pelo nome
-        if (!Component) {
-          console.warn(`Componente para "${route.name}" não encontrado.`);
-          return null;
-        }
-
-        return <Route key={index} path={route.path} element={<Component />} />;
-      })}
+      {routes.map((route, index) => (
+        <Route key={index} path={route} element={<Geral />} />
+      ))}
     </Routes>
   );
 };
+
 
 export default DynamicRoutes;
