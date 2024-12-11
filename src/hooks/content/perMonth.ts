@@ -1,4 +1,4 @@
-import { transformAtendimento } from "../../models/transforms/transformAtendimento";
+import { transformAtendimento } from "../../models/transforms/atendimento/transformAtendimento";
 import { useApi } from "../useApi"
 
 export async function usePerMonth(params = {}) {

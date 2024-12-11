@@ -1,8 +1,11 @@
+import atendWhatsapp from "../../images-auster/AtendWhatsappAuster.png";
+import pessoasaatendidas from "../../images-auster/PessoasAtendidas.png";
+
 export default function PessoasAtendidas() {
     return (
         <div className="flex flex-col items-center space-y-14 font-sans text-3xl">
             <div className="flex items-center">
-                <img src="src/images-auster/AtendWhatsappAuster.png" alt="AtendimentoWhatsapp" className="mr-4" />
+                <img src={atendWhatsapp} alt="AtendimentoWhatsapp" className="mr-4" />
                 <h1 className="text-2xl">Atendimentos</h1>
             </div>
 
@@ -25,7 +28,7 @@ export default function PessoasAtendidas() {
 
 
             <div className="flex items-center">
-                <img src="src/images-auster/PessoasAtendidas.png" alt="PessoasAtendidasIcone" className="mr-4" />
+                <img src={pessoasaatendidas} alt="PessoasAtendidasIcone" className="mr-4" />
                 <h1 className="text-2xl">Pessoas Atendidas</h1>
             </div>
 

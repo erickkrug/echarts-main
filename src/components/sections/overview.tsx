@@ -28,14 +28,15 @@ import { useEffect, useState } from "react";
 import { usePerMonth } from "../../hooks/content/perMonth";
 import { BarGraph, BaseDataType } from "../graph/bar-graph";
 
+
 export function Overview() {
   const [dataJune, setDataJune] = useState<BaseDataType[]>();
   const [dataJuly, setDataJuly] = useState<BaseDataType[]>();
 
   useEffect(() => {
     async function fetchData() {
-      const juneData = await usePerMonth({ EmpresaId: 130, DataInicio: '2024-06-01', DataFim: '2024-06-30' });
-      const julyData = await usePerMonth({ EmpresaId: 130, DataInicio: '2024-07-01', DataFim: '2024-07-31' });
+      const juneData = await usePerMonth({ EmpresaId: 183, DataInicio: '2024-06-01', DataFim: '2024-06-30' });
+      const julyData = await usePerMonth({ EmpresaId: 183, DataInicio: '2024-07-01', DataFim: '2024-07-31' });
 
       setDataJune(juneData);
       setDataJuly(julyData);
