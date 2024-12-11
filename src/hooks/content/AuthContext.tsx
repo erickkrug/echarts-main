@@ -64,7 +64,7 @@ export const AuthProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
         name: item.nome,
       }));
       saveRoutes(newRoutes);
-
+ 
       setIs2FAValidated(true);
       navigate('/dashboards/geral');
     } catch (error: any) {
